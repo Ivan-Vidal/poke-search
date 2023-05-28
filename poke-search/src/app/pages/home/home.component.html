@@ -1,0 +1,20 @@
+<div class="home__loading"></div>
+<div class="home__container">
+    <h1 class="home__title">PokeSchorles</h1>
+    
+        <div>
+            <i></i>
+            <input class="form-control" type="search" name="" id="" />
+        </div>
+    <hr>
+<div>{{allPokes.length}}</div>
+    <div class="home__content-cards row">
+        <div class="col" *ngFor="let poke of allPokes">
+            <app-card
+            [name]="poke.name"
+            [img]="poke.url"></app-card>
+        </div>
+        
+    </div>
+{{ allPokes?.name }}
+</div>

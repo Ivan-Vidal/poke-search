@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-card',
@@ -8,10 +9,15 @@ import { Component, Input, OnInit } from '@angular/core';
 export class CardComponent implements OnInit {
 @Input() name!: string
 @Input() img!: string
-@Input() type!: string
+@Input() types!: any
+@Input() function!: Event
+element: any
+  isModal: any;
+  pokemon: any
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  
 }

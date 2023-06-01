@@ -1,20 +1,50 @@
-<div class="home__loading"></div>
-<div class="home__container">
-    <h1 class="home__title">PokeSchorles</h1>
-    
-        <div>
-            <i></i>
-            <input class="form-control" type="search" name="" id="" />
-        </div>
-    <hr>
-<div>{{allPokes.length}}</div>
-    <div class="home__content-cards row">
-        <div class="col" *ngFor="let poke of allPokes">
-            <app-card
-            [name]="poke.name"
-            [img]="poke.url"></app-card>
+<div *ngIf="!isModal">
+    <div *ngIf="loading" class="home__loading">
+        <div class="spinner-grow" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+    </div>
+    <div *ngIf="!loading" class="home__container">
+        <div class="home__header-content">
+            <h1>PokeSchorles</h1>
+            <div class="home__input-content">
+                <input class="form-control" [formControl]="pokeName"
+                (ngModelChange)="onSearch()" inputAutoFocus type="search" placeholder="Search Poke" name="" id="" />
+            </div>
         </div>
         
+        <hr>
+    <div class="home__total">
+       Total de pokemons encontrados :&nbsp; <span>{{ pokemon.length}}</span> 
     </div>
-{{ allPokes?.name }}
+        <div class="home__content-cards">
+            <div class="home__cards" *ngFor="let poke of pokemon">
+                <div class="card__container">
+                    <div class="card__content-img">
+                        <img src="{{poke.imagem}}" alt="{{poke.nome}}">
+                    </div>
+                    <h1 class="card__title">{{ poke.nome }}</h1>
+                    <hr class="card__separator">
+                    <div class="card__types-content">
+                        <div></div>
+                        <div class="card__types">
+                            <h5>Types</h5>
+                            <ul>
+                                <li *ngFor="let typesPoke of poke.types">
+                                    {{ typesPoke.type.name }}
+                                </li>
+                            </ul>
+                        </div>
+                        
+                    </div>
+                    <div>
+                        <button  type="button" (click)="showModal(poke.nome)" class="card__button">
+                            Ver detalhes
+                        </button>
+                    </div>    
+                </div>
+            </div>
+            
+        </div>
+    </div>
 </div>
